@@ -1,0 +1,4 @@
+export const TYPE_TAGS = {
+  STUDIO: 'TAG_STUDIO',
+  ADDRESS: 'TAG_ADDRESS'
+}
