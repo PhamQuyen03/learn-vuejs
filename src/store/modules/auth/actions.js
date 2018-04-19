@@ -7,11 +7,12 @@ const {
   LOG_OUT, LOG_OUT_DONE, LOG_OUT_SUCCESS, LOG_OUT_ERROR
 } = AUTH
 // login
-export const logIn = ({ dispatch }, params) => {
-  console.log('params', params)
-  auth.logIn({ type: LOG_IN, dispatch, params })
+export const logIn = ({ dispatch }, data) => {
+  console.log('data', data)
+  auth.logIn({ type: LOG_IN, dispatch, data })
 }
 export const logInSuccess = ({ commit }, payload) => {
+  console.log('payload', payload)
   commit(LOG_IN_SUCCESS, payload)
 }
 

@@ -10,11 +10,16 @@
 import { eventBus } from '../main'
 export default {
   props: ['userAge'],
+  data () {
+    return {
+      count: 0
+    }
+  },
   methods: {
     editAge () {
-      this.userAge += 1
-      //   this.$emit('ageWasEdit', this.userAge)
-      eventBus.$emit('ageWasEdited', this.userAge)
+      this.count = this.userAge + 1
+      this.$emit('ageWasEdit', this.count)
+      eventBus.$emit('ageWasEdited', this.count)
     }
   }
 }

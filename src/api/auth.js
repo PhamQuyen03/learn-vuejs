@@ -3,12 +3,12 @@ export const getUserInfo = ({ type, dispatch, id }) => {
   const url = `/user/${id}`
   client.get(type, dispatch, url)
 }
-export const logIn = ({ type, dispatch, params }) => {
-  const url = '/login'
-  client.post({ type, dispatch, url, params })
+export const logIn = ({ type, dispatch, data }) => {
+  const url = '/users/login?email=quyenpt@wefit.vn&password=12345678'
+  client.post({ type, dispatch, url })
 }
 export const signUp = ({ type, dispatch, params }) => {
-  const url = 'sign_up'
+  const url = '/users/registration?email=quyenpt@wefit.vn&password=12345678'
   client.post({ type, dispatch, url, params })
 }
 export const logOut = ({ type, dispatch }) => {

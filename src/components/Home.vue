@@ -18,13 +18,13 @@
             <el-col :span='4'>
                 <div class='grid-content bg-purple-light'>
                     <p>Trạng thái</p>
-                    <select-picker :options=optionsStatus titlePicker='Chọn trạng thái '></select-picker>
+                    <select-picker :options=optionsStatus titlePicker='Chọn trạng thái'></select-picker>
                 </div>
             </el-col>
             <el-col :span='4'>
                 <div class='grid-content bg-purple-light'>
                     <p>Bộ môn</p>
-                    <select-picker :options=optionsSubject titlePicker='Chọn bộ môn '></select-picker>
+                    <select-picker :options=optionsSubject titlePicker='Chọn bộ môn'></select-picker>
                 </div>
             </el-col>
         </el-row>
@@ -48,35 +48,20 @@
         <el-row :gutter='20'>
             <el-col :span='8'>
                 <div class='grid-content bg-tag'>
-                        <el-tag
-                            :key='studio.id'
-                            v-for='studio in tagsStudio'
-                            closable
-                            :disable-transitions='false'
-                            type='info'
-                            @close='handleClose(studio)'>
-                            {{studio.name}}
-                        </el-tag>
+                  <tag-filter :dynamicTags=tagsStudio @emitTagFilter="tagsStudio = $event"></tag-filter>
                 </div>
             </el-col>
             <el-col :span='6'>
                 <div class='grid-content bg-tag'>
-                        <el-tag
-                            :key='address.id'
-                            v-for='address in tagsAddress'
-                            closable
-                            :disable-transitions='false'
-                            type='info'
-                            @close='handleClose(address)'>
-                            {{address.name}}
-                        </el-tag>
+                  <tag-filter :dynamicTags=tagsAddress @emitTagFilter="tagsAddress = $event"></tag-filter>
                 </div>
             </el-col>
         </el-row>
+        <!--  -->
         <el-row>
             <el-col :span='4'>
                 <div class='grid-content bg-purple'>
-                    <el-button type='danger' class='bt-report'><span class='btFilter'>Bắt đầu lọc</span></el-button>
+                    <el-button type='danger' @click="getAmenitiesLocals" class='bt-report'><span class='btFilter'>Bắt đầu lọc</span></el-button>
                 </div>
             </el-col>
         </el-row>
@@ -101,13 +86,14 @@
 import HeaderContent from './HeaderContent.vue'
 import SelectPicker from './SelectPicker.vue'
 import TableStudio from './Table.vue'
+import TagFilter from './TagFilter.vue'
 import { TYPE_TAGS } from './constants/webContants.js'
 
 const { STUDIO, ADDRESS } = TYPE_TAGS
 
 export default {
   name: 'home',
-  components: { HeaderContent, SelectPicker, TableStudio },
+  components: { HeaderContent, SelectPicker, TableStudio, TagFilter },
   data () {
     return {
       dataLocal: [],
@@ -131,6 +117,15 @@ export default {
       tagsStudio: [{ name: 'phong 1', type: STUDIO, id: 'STD3wsS1' }, { name: 'phong 2', type: STUDIO, id: 'STDdgsdf' }, { name: 'phong 3', type: STUDIO, id: 'STDsjals' }],
       tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }]
     }
+  },
+  beforeUpdate () {
+    const { staticData: { isLoading } } = this.$store.state
+    console.log('static data beforeUpdate', isLoading)
+  },
+  updated () {
+    // Fired every second, should always be true
+    const { staticData: { isLoading } } = this.$store.state
+    console.log('static data updated', isLoading)
   },
   methods: {
     makeid: function () {
@@ -164,13 +159,27 @@ export default {
       }
     },
     getAmenitiesLocals () {
-      this.$store.dispatch('getAmenities')
+      const { staticData } = this.$store.state
+      console.log('static data1231', staticData.isLoading)
+      this.$store.dispatch('getAmenities', staticData)
+    },
+    notificationSuccess () {
+      this.$notify({
+        title: 'Thành Công',
+        message: 'Đm thành công',
+        type: 'success',
+        position: 'bottom-right'
+      })
     }
+  },
+  mounted () {
+    this.$store.dispatch('getAmenities')
   },
   computed: {
     getStaticData () {
-      const { alert } = this.$store.state
-      this.$store.dispatch('getAmenities', alert)
+      const { staticData: { isLoading } } = this.$store.state
+      console.log('static data', isLoading)
+      if (!isLoading) this.notificationSuccess()
       return 0
     }
   }

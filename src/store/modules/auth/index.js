@@ -11,7 +11,13 @@ export default {
   state: {
     isLogIn: false,
     authToken: '',
-    userData: null
+    userData: {
+      name: '',
+      email: '',
+      avatar: null,
+      gender: null,
+      id: null
+    }
   },
   mutations: {
     [LOG_IN_SUCCESS] (state, payload) {

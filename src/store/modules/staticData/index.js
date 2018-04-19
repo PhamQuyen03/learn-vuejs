@@ -7,17 +7,17 @@ const { GET_AMENITIES_DONE, GET_AMENITIES_SUCCESS, GET_AMENITIES_ERROR } = STATI
 export default {
   actions,
   state: {
-    isLoading: false,
+    isLoading: true,
     list: []
   },
   mutations: {
     [GET_AMENITIES_SUCCESS] (state, payload) {
-      const { data: { success, result } } = payload
-      this.state.staticData.isLoading = success
+      const { data: { result } } = payload
+      this.state.staticData.isLoading = true
       this.state.staticData.list = result
     },
     [GET_AMENITIES_DONE] (state, payload) {
-      console.log('get amenities done')
+      this.state.staticData.isLoading = false
     },
     [GET_AMENITIES_ERROR] (state, payload) {
       console.log('get amenities error')

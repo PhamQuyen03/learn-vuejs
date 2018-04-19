@@ -11,8 +11,7 @@ const httpClient = axios.create({
 })
 
 httpClient.interceptors.request.use((request) => {
-  request.headers.Accept = 'application/json'
-  request.headers.Authorization = 'bearerToken'
+  console.log('requestttt', request)
   return request
 })
 
@@ -35,11 +34,21 @@ const dispatchResult = (type, request, dispatch) => {
 }
 
 export const get = ({ type, dispatch, url, params = {}, token }) => {
-  dispatchResult(type, httpClient.get(url, { params: humps.decamelizeKeys(params) }), dispatch)
+  const headers = {
+    'Accept-Language': 'vi',
+    Accept: `application/json; version=2`,
+    Authorization: token ? `Bearer ${token}` : ''
+  }
+  dispatchResult(type, httpClient.get(url, { params: humps.decamelizeKeys(params), headers }), dispatch)
 }
-export const post = ({ type, dispatch, url, params = {} }) =>
-  dispatchResult(type, httpClient.post(url, humps.decamelizeKeys(params)), dispatch)
-
+export const post = ({ type, dispatch, url, params = {}, data, token }) => {
+  const headers = {
+    'Accept-Language': 'vi',
+    Accept: `application/json; version=2`,
+    Authorization: token ? `Bearer ${token}` : ''
+  }
+  dispatchResult(type, httpClient.post(url, { data }, { headers }), dispatch)
+}
 export const put = ({ type, dispatch, url, params = {} }) =>
   dispatchResult(type, httpClient.put(url, humps.decamelizeKeys(params)), dispatch)
 

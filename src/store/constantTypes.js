@@ -1,3 +1,5 @@
+export const DETECTHTTPCOMMONERROR = 'detectHttpCommonError'
+
 export const STATIC_DATA = {
   GET_AMENITIES: 'getAmenities',
   GET_AMENITIES_SUCCESS: 'getAmenitiesSuccess',

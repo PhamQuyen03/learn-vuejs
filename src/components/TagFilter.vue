@@ -1,36 +1,33 @@
 <template>
     <div>
         <el-tag
-            :key="tag"
+            :key="tag.id"
             v-for="tag in dynamicTags"
             closable
             :disable-transitions="false"
             type='info'
             @close="handleClose(tag)">
-            {{tag}}
+            {{tag.name}}
         </el-tag>
     </div>
 </template>
 <script>
+import { TYPE_TAGS } from './constants/webContants.js'
+
+const { ADDRESS } = TYPE_TAGS
 export default {
   props: ['dynamicTags'],
-  name: 'tag',
   data () {
     return {
       inputVisible: false,
-      inputValue: ''
-    }
-  },
-  computed: {
-    // a computed getter
-    listTag: function () {
-      // `this` points to the vm instance
-      return this.props.dynamicTags
+      inputValue: '',
+      tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }]
     }
   },
   methods: {
     handleClose (tag) {
-      this.props.dynamicTags.splice(this.props.dynamicTags.indexOf(tag), 1)
+      this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)
+      this.$emit('emitTagFilter', this.dynamicTags)
     },
 
     showInput () {
@@ -43,7 +40,8 @@ export default {
     handleInputConfirm () {
       let inputValue = this.inputValue
       if (inputValue) {
-        this.props.dynamicTags.push(inputValue)
+        this.tagsAddress.push(inputValue)
+        this.$emit('emitTagFilter', this.dynamicTags)
       }
       this.inputVisible = false
       this.inputValue = ''
@@ -53,10 +51,12 @@ export default {
 </script>
 
 <style>
-  .el-tag {
-    margin-right: 10px;
-    margin-bottom: 5px
-  }
+  .el-tag{
+    margin-right: 5px;
+    margin-top: 5px;
+    text-align: left;
+    background-color:  #292941;
+}
   .button-new-tag {
     margin-right: 10px;
     height: 32px;
