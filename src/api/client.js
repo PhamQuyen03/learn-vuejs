@@ -36,7 +36,7 @@ const dispatchResult = (type, request, dispatch) => {
 export const get = ({ type, dispatch, url, params = {}, token }) => {
   const headers = {
     'Accept-Language': 'vi',
-    Accept: `application/json; version=2`,
+    Accept: `application/json; version=v2`,
     Authorization: token ? `Bearer ${token}` : ''
   }
   dispatchResult(type, httpClient.get(url, { params: humps.decamelizeKeys(params), headers }), dispatch)
@@ -44,14 +44,21 @@ export const get = ({ type, dispatch, url, params = {}, token }) => {
 export const post = ({ type, dispatch, url, params = {}, data, token }) => {
   const headers = {
     'Accept-Language': 'vi',
-    Accept: `application/json; version=2`,
+    Accept: `application/json; version=v2`,
     Authorization: token ? `Bearer ${token}` : ''
   }
-  dispatchResult(type, httpClient.post(url, { data }, { headers }), dispatch)
+  const paramsHumps = humps.decamelizeKeys(params)
+  dispatchResult(type, httpClient.post(url, { data }, { headers }, { params: paramsHumps }), dispatch)
 }
-export const put = ({ type, dispatch, url, params = {} }) =>
-  dispatchResult(type, httpClient.put(url, humps.decamelizeKeys(params)), dispatch)
-
+export const put = ({ type, dispatch, url, params = {}, data, token }) => {
+  const paramsHumps = humps.decamelizeKeys(params)
+  const headers = {
+    'Accept-Language': 'vi',
+    Accept: `application/json; version=v2`,
+    Authorization: token ? `Bearer ${token}` : ''
+  }
+  dispatchResult(type, httpClient.put(url, { params: paramsHumps }, { headers }, { data }), dispatch)
+}
 // export function logErrors(error) {
 //   if (error.response) {
 //     // The request was made and the server responded with a status code

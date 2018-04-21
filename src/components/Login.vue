@@ -1,8 +1,8 @@
 <template>
-<div>
-    <el-button type="info" @click="dialogFormVisible = true">Login</el-button>
+<div class="login">
+    <el-button type="primary" @click="dialogFormVisible = true">Login</el-button>
 
-    <!-- <el-dialog title="Login" :visible.sync="dialogFormVisible" center> -->
+    <el-dialog title="Login" :visible.sync="dialogFormVisible" center>
         <el-form :model="form">
         <el-form-item label="Email" :label-width="formLabelWidth">
             <el-input type="email" v-model="form.email" auto-complete="off"></el-input>
@@ -15,7 +15,7 @@
             <el-button @click="dialogFormVisible = false">Cancel</el-button>
             <el-button type="primary" @click.prevent='actionlogIn' >Login</el-button>
         </span>
-    <!-- </el-dialog> -->
+    </el-dialog>
 </div>
 </template>
 <!-- Form -->

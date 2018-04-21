@@ -10,7 +10,7 @@
         :route="true"
         @select="handleSelect">
         <el-menu-item index="1"><a href="/">Wefit Admin</a></el-menu-item>
-        <el-menu-item index="2"><router-link :to="{ path: '/user' }">Branch</router-link></el-menu-item>
+        <el-menu-item index="2"><a href="http://localhost:8080/#/user">Branch</a></el-menu-item>
         <el-menu-item index="3">Studio</el-menu-item>
         <el-menu-item index="4">Citis</el-menu-item>
     </el-menu>

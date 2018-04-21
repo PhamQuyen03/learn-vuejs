@@ -4,7 +4,8 @@ export const getUserInfo = ({ type, dispatch, id }) => {
   client.get(type, dispatch, url)
 }
 export const logIn = ({ type, dispatch, data }) => {
-  const url = '/users/login?email=quyenpt@wefit.vn&password=12345678'
+  const { email, password } = data
+  const url = `/users/login?email=${email}&password=${password}`
   client.post({ type, dispatch, url })
 }
 export const signUp = ({ type, dispatch, params }) => {

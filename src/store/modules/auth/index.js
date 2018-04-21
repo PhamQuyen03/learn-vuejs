@@ -21,7 +21,10 @@ export default {
   },
   mutations: {
     [LOG_IN_SUCCESS] (state, payload) {
-      console.log('payload login success', payload)
+      const { data: { success, result } } = payload
+      state.isLogIn = success
+      state.authToken = result.authToken
+      state.userData = result
     },
     [LOG_IN_DONE] (state, payload) {
       console.log('payload login done', payload)

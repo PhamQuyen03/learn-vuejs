@@ -29,11 +29,15 @@
             </el-col>
         </el-row>
         <!-- input filter -->
+        <!-- tag filter -->
         <el-row :gutter='20'>
             <el-col :span='8'>
                 <div class='grid-content bg-purple-light'>
                     <p>Studio</p>
                     <el-input @keyup.enter.native='addFilterStudio' placeholder='Please input' v-model='inputFilterStudio'></el-input>
+                </div>
+                <div class='grid-content bg-tag'>
+                  <tag-filter :dynamicTags=tagsStudio @emitTagFilter="tagsStudio = $event"></tag-filter>
                 </div>
             </el-col>
             <el-col :span='6'>
@@ -41,22 +45,12 @@
                     <p>Quận</p>
                     <el-input @keyup.enter.native='addFilterAdress' placeholder='Please input' v-model='inputFilterAddress'></el-input>
                 </div>
-            </el-col>
-        </el-row>
-        <!--  -->
-    <!-- tag filter -->
-        <el-row :gutter='20'>
-            <el-col :span='8'>
-                <div class='grid-content bg-tag'>
-                  <tag-filter :dynamicTags=tagsStudio @emitTagFilter="tagsStudio = $event"></tag-filter>
-                </div>
-            </el-col>
-            <el-col :span='6'>
                 <div class='grid-content bg-tag'>
                   <tag-filter :dynamicTags=tagsAddress @emitTagFilter="tagsAddress = $event"></tag-filter>
                 </div>
             </el-col>
         </el-row>
+        <!--  -->
         <!--  -->
         <el-row>
             <el-col :span='4'>
