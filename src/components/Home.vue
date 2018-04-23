@@ -109,19 +109,21 @@ export default {
         { value: 'Y', label: 'Yoga', id: 2 }
       ],
       tagsStudio: [{ name: 'phong 1', type: STUDIO, id: 'STD3wsS1' }, { name: 'phong 2', type: STUDIO, id: 'STDdgsdf' }, { name: 'phong 3', type: STUDIO, id: 'STDsjals' }],
-      tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }]
+      tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }],
+      isLoading: false
     }
   },
-  beforeUpdate () {
-    const { staticData: { isLoading } } = this.$store.state
-    console.log('static data beforeUpdate', isLoading)
-  },
-  updated () {
-    // Fired every second, should always be true
-    const { staticData: { isLoading } } = this.$store.state
-    console.log('static data updated', isLoading)
-  },
   methods: {
+    openLoadingFullScreen () {
+      this.$loading({
+        lock: true,
+        spinner: 'el-icon-loading',
+        background: 'rgba(41, 41, 65, 0.7)'
+      })
+    },
+    closeLoadingFullScreen () {
+      this.$loading().close()
+    },
     makeid: function () {
       let text = ''
       const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -164,16 +166,31 @@ export default {
         type: 'success',
         position: 'bottom-right'
       })
+    },
+    loadingStartWeb () {
+
+    },
+    updatedData ({ isLoading }) {
+      this.isLoading = isLoading
     }
   },
   mounted () {
     this.$store.dispatch('getAmenities')
   },
+  watch: {
+    isLoading: function (newValue, oldValue) {
+      if (newValue && !oldValue) this.openLoadingFullScreen()
+      if (!newValue && oldValue) {
+        this.closeLoadingFullScreen()
+        this.notificationSuccess()
+      }
+    }
+  },
   computed: {
-    getStaticData () {
+    updateDataStore () {
       const { staticData: { isLoading } } = this.$store.state
       console.log('static data', isLoading)
-      if (!isLoading) this.notificationSuccess()
+      this.updatedData({ isLoading })
       return 0
     }
   }

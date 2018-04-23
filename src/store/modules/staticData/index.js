@@ -2,15 +2,18 @@
 import * as actions from './actions'
 import { STATIC_DATA } from '../../constantTypes'
 
-const { GET_AMENITIES_DONE, GET_AMENITIES_SUCCESS, GET_AMENITIES_ERROR } = STATIC_DATA
+const { GET_AMENITIES, GET_AMENITIES_DONE, GET_AMENITIES_SUCCESS, GET_AMENITIES_ERROR } = STATIC_DATA
 
 export default {
   actions,
   state: {
-    isLoading: true,
+    isLoading: false,
     list: []
   },
   mutations: {
+    [GET_AMENITIES] () {
+      this.state.isLoading = true
+    },
     [GET_AMENITIES_SUCCESS] (state, payload) {
       const { data: { result } } = payload
       this.state.staticData.isLoading = true

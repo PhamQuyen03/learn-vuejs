@@ -24,6 +24,12 @@ export default {
       tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }]
     }
   },
+  watch: {
+    dynamicTags: (newValue, oldValue) => {
+      console.log('tag new', newValue)
+      console.log('tag old', oldValue)
+    }
+  },
   methods: {
     handleClose (tag) {
       this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)

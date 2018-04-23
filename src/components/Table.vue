@@ -1,6 +1,9 @@
 <template>
   <el-table
     :data="tableData6"
+    v-loading="loading"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
     border
     stripe
     style="width: 100%">
@@ -40,6 +43,7 @@ export default {
   name: 'table-studio',
   data () {
     return {
+      loading: true,
       tableData6: [{
         id: '12987122',
         name: 'aom',
