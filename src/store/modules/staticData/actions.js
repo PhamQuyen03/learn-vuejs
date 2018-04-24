@@ -4,7 +4,6 @@ import * as staticData from '../../../api/staticData'
 const { GET_AMENITIES, GET_AMENITIES_DONE, GET_AMENITIES_ERROR, GET_AMENITIES_SUCCESS } = STATIC_DATA
 
 export const getAmenities = ({ dispatch, commit }, params) => {
-  console.log('params', params)
   staticData.get({ type: GET_AMENITIES, dispatch })
   commit(GET_AMENITIES)
 }

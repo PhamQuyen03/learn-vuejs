@@ -27,28 +27,20 @@ export default {
       state.userData = result
     },
     [LOG_IN_DONE] (state, payload) {
-      console.log('payload login done', payload)
     },
     [LOG_IN_ERROR] (state, payload) {
-      console.log('payload login error', payload)
     },
     [SIGN_UP_SUCCESS] (state, payload) {
-      console.log('payload login success', payload)
     },
     [SIGN_UP_DONE] (state, payload) {
-      console.log('payload login done', payload)
     },
     [SIGN_UP_ERROR] (state, payload) {
-      console.log('payload login error', payload)
     },
     [LOG_OUT_SUCCESS] (state, payload) {
-      console.log('payload login success', payload)
     },
     [LOG_OUT_DONE] (state, payload) {
-      console.log('payload login done', payload)
     },
     [LOG_OUT_ERROR] (state, payload) {
-      console.log('payload login error', payload)
     }
   }
 }

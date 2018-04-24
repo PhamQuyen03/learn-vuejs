@@ -8,11 +8,9 @@ const {
 } = AUTH
 // login
 export const logIn = ({ dispatch }, data) => {
-  console.log('data', data)
   auth.logIn({ type: LOG_IN, dispatch, data })
 }
 export const logInSuccess = ({ commit }, payload) => {
-  console.log('payload', payload)
   commit(LOG_IN_SUCCESS, payload)
 }
 
@@ -33,7 +31,6 @@ export const logInDone = ({ commit }) => {
 }
 // sign up
 export const signUp = ({ dispatch }, params) => {
-  console.log('params', params)
   auth.signUp({ type: SIGN_UP, dispatch, params })
 }
 export const signUpSuccess = ({ commit }, payload) => {

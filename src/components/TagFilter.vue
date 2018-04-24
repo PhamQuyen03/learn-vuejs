@@ -26,8 +26,6 @@ export default {
   },
   watch: {
     dynamicTags: (newValue, oldValue) => {
-      console.log('tag new', newValue)
-      console.log('tag old', oldValue)
     }
   },
   methods: {

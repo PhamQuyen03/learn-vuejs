@@ -15,34 +15,6 @@
         </div>
         <!--  -->
         <app-login></app-login>
-        <app-noticefication></app-noticefication>
-        <!--  -->
-        <el-row :gutter='20'>
-            <el-col :span='8'>
-                <div class='grid-content bg-purple-light'>
-                    <p>Studio</p>
-                    <el-input @keyup.enter.native='addFilterStudio' placeholder='Please input' v-model='inputFilterStudio'></el-input>
-                </div>
-            </el-col>
-            <el-col :span='6'>
-                <div class='grid-content bg-purple-light'>
-                    <p>Quận</p>
-                    <el-input @keyup.enter.native='addFilterAdress' placeholder='Please input' v-model='inputFilterAddress'></el-input>
-                </div>
-            </el-col>
-        </el-row>
-        <el-row :gutter='20'>
-            <el-col :span='8'>
-                <div class='grid-content bg-tag'>
-                  <app-filter :dynamicTags=tagsStudio @emitTagFilter="tagsStudio = $event"></app-filter>
-                </div>
-            </el-col>
-            <el-col :span='6'>
-                <div class='grid-content bg-tag'>
-                  <app-filter :dynamicTags=tagsAddress @emitTagFilter="tagsAddress = $event"></app-filter>
-                </div>
-            </el-col>
-        </el-row>
     </div>
 </template>
 

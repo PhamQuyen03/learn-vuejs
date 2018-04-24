@@ -11,7 +11,6 @@ const httpClient = axios.create({
 })
 
 httpClient.interceptors.request.use((request) => {
-  console.log('requestttt', request)
   return request
 })
 

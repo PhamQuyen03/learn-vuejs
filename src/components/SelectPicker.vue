@@ -21,7 +21,6 @@ export default {
   },
   methods: {
     handleCommand (command) {
-      console.log('click on item ', command)
     }
   }
 }

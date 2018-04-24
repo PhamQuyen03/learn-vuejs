@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate'
 import staticData from './modules/staticData/index'
 import auth from './modules/auth/index'
 import errors from './modules/errors/index'
+import schedules from './modules/schedules'
 
 // import * as actions from './actions'
 // import * as types from './mutation-types'
@@ -27,7 +28,8 @@ const store = new Vuex.Store({
   modules: {
     auth,
     errors,
-    staticData
+    staticData,
+    schedules
   },
   mutations: {
   }

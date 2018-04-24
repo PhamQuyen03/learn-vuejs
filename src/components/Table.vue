@@ -1,7 +1,6 @@
 <template>
   <el-table
     :data="tableData6"
-    v-loading="loading"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
     border

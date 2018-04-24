@@ -11,7 +11,7 @@ export default {
     list: []
   },
   mutations: {
-    [GET_AMENITIES] () {
+    [GET_AMENITIES] (state) {
       this.state.isLoading = true
     },
     [GET_AMENITIES_SUCCESS] (state, payload) {
@@ -23,7 +23,6 @@ export default {
       this.state.staticData.isLoading = false
     },
     [GET_AMENITIES_ERROR] (state, payload) {
-      console.log('get amenities error')
     }
   }
   // getters: {

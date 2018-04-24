@@ -109,8 +109,7 @@ export default {
         { value: 'Y', label: 'Yoga', id: 2 }
       ],
       tagsStudio: [{ name: 'phong 1', type: STUDIO, id: 'STD3wsS1' }, { name: 'phong 2', type: STUDIO, id: 'STDdgsdf' }, { name: 'phong 3', type: STUDIO, id: 'STDsjals' }],
-      tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }],
-      isLoading: false
+      tagsAddress: [{ name: 'quan 1', type: ADDRESS, id: 'ADRA1sdg' }, { name: 'quan 2', type: ADDRESS, id: 'ADRA2etf' }, { name: 'quan 3', type: ADDRESS, id: 'ADR79as9' }]
     }
   },
   methods: {
@@ -156,30 +155,38 @@ export default {
     },
     getAmenitiesLocals () {
       const { staticData } = this.$store.state
-      console.log('static data1231', staticData.isLoading)
       this.$store.dispatch('getAmenities', staticData)
     },
     notificationSuccess () {
       this.$notify({
-        title: 'Thành Công',
-        message: 'Đm thành công',
+        message: 'DM Success',
         type: 'success',
-        position: 'bottom-right'
+        position: 'bottom-right',
+        offset: 100
       })
-    },
-    loadingStartWeb () {
-
     },
     updatedData ({ isLoading }) {
       this.isLoading = isLoading
     }
   },
   mounted () {
+    const { authToken: token } = this.$store.state.auth
+    const { isLoading } = this.$store.state.schedules
+    this.isLoading = isLoading
+    const header = {
+      params: {
+        page: 1,
+        city_code: 'HN',
+        per_page: 10
+      },
+      token
+    }
+    this.openLoadingFullScreen()
     this.$store.dispatch('getAmenities')
+    this.$store.dispatch('getChedulesSession', header)
   },
   watch: {
     isLoading: function (newValue, oldValue) {
-      if (newValue && !oldValue) this.openLoadingFullScreen()
       if (!newValue && oldValue) {
         this.closeLoadingFullScreen()
         this.notificationSuccess()
@@ -187,9 +194,16 @@ export default {
     }
   },
   computed: {
+    isLoading: {
+      get: function () {
+        const { isLoading } = this.$store.state.schedules
+        return isLoading
+      },
+      set: function (newValue) {
+      }
+    },
     updateDataStore () {
-      const { staticData: { isLoading } } = this.$store.state
-      console.log('static data', isLoading)
+      const { state: { schedules: { isLoading } } } = this.$store
       this.updatedData({ isLoading })
       return 0
     }
@@ -243,5 +257,18 @@ p{
 .line{
     border-bottom: 2px solid #838282;
     margin-top: 20px;
+}
+.el-notification .el-icon-success {
+  color: white !important
+}
+.el-notification {
+  font-size: 12px;
+  background: rgb(124, 239, 130);
+}
+.el-notification__closeBtn {
+  color: white
+}
+.el-notification__content p {
+  color: white
 }
 </style>

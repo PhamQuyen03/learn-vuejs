@@ -10,13 +10,6 @@
 
 export default {
   props: ['detailAge'],
-  beforeUpdate () {
-    console.log('static data beforeUpdate detail', this.count)
-  },
-  updated () {
-    // Fired every second, should always be true
-    console.log('static data updated detail', this.count)
-  },
   data () {
     return {
       count: 0

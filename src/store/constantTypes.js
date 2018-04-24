@@ -23,3 +23,10 @@ export const AUTH = {
   LOG_OUT_DONE: 'logOutDone',
   LOG_OUT_ERROR: 'logOutError'
 }
+
+export const SCHEDULES = {
+  GET_CHEDULES_SESSION: 'getChedulesSession',
+  GET_CHEDULES_SESSION_SUCCESS: 'getChedulesSessionSuccess',
+  GET_CHEDULES_SESSION_DONE: 'getChedulesSessionDone',
+  GET_CHEDULES_SESSION_ERROR: 'getChedulesSessionError'
+}

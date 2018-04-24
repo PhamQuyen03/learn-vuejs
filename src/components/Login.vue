@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     actionlogIn () {
-      console.log('action login')
       const data = {
         email: this.form.email,
         password: this.form.password
