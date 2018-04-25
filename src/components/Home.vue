@@ -55,7 +55,7 @@
         <el-row>
             <el-col :span='4'>
                 <div class='grid-content bg-purple'>
-                    <el-button type='danger' @click="getAmenitiesLocals" class='bt-report'><span class='btFilter'>Bắt đầu lọc</span></el-button>
+                    <el-button type='danger' class='bt-report'><span class='btFilter'>Bắt đầu lọc</span></el-button>
                 </div>
             </el-col>
         </el-row>
@@ -67,7 +67,7 @@
             </el-col>
             <el-col :span='6'>
                 <div class='grid-content bg-purple'>
-                    <el-button v-on:click="getAmenitiesLocals" type='danger' class='bt-report'><span class='btFilter'>Xuất danh sách Studio</span></el-button>
+                    <el-button type='danger' class='bt-report'><span class='btFilter'>Xuất danh sách Studio</span></el-button>
                 </div>
             </el-col>
         </el-row>
@@ -153,10 +153,6 @@ export default {
         this.tagsAddress.splice(this.tagsAddress.indexOf(tag), 1)
       }
     },
-    getAmenitiesLocals () {
-      const { staticData } = this.$store.state
-      this.$store.dispatch('getAmenities', staticData)
-    },
     notificationSuccess () {
       this.$notify({
         message: 'DM Success',
@@ -164,15 +160,15 @@ export default {
         position: 'bottom-right',
         offset: 100
       })
-    },
-    updatedData ({ isLoading }) {
-      this.isLoading = isLoading
     }
+    // updatedData ({ loadingSchedule, loadingStaticData }) {
+    //   this.isLoadingSchedules = loadingSchedule
+    // }
   },
   mounted () {
     const { authToken: token } = this.$store.state.auth
-    const { isLoading } = this.$store.state.schedules
-    this.isLoading = isLoading
+    // const { isLoading } = this.$store.state.schedules
+    // this.isLoading = isLoading
     const header = {
       params: {
         page: 1,
@@ -196,16 +192,12 @@ export default {
   computed: {
     isLoading: {
       get: function () {
-        const { isLoading } = this.$store.state.schedules
-        return isLoading
+        const { isLoading: loadingSchedule } = this.$store.state.schedules
+        const { isLoading: loadingStaticData } = this.$store.state.staticData
+        return (!loadingSchedule && !loadingStaticData) ? loadingSchedule : true
       },
       set: function (newValue) {
       }
-    },
-    updateDataStore () {
-      const { state: { schedules: { isLoading } } } = this.$store
-      this.updatedData({ isLoading })
-      return 0
     }
   }
 }

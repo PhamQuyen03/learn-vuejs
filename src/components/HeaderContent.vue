@@ -11,8 +11,8 @@
     </el-col>
     <el-col :span="12">
       <div class="grid-content bg-purple-dark">
-          <el-button type="danger" class="bt-report"><a href="http://localhost:8080/box">Xuất báo cáo rating</a></el-button>
-          <el-button type="danger" class="bt-report"><a href="http://localhost:8080/box">Xuất báo cáo giá</a></el-button>
+          <el-button type="danger" class="bt-report" @click="testRouter">Xuất báo cáo rating</el-button>
+          <el-button type="danger" class="bt-report">Xuất báo cáo giá</el-button>
       </div>
     </el-col>
   </el-row>
@@ -29,6 +29,11 @@ export default {
         { value: 'HN', label: 'Thêm studio ở Hà Nội', id: 1 },
         { value: 'HCM', label: 'Thêm studio ở HCM', id: 2 }
       ]
+    }
+  },
+  methods: {
+    testRouter: function () {
+      this.$router.push({ path: '/user' })
     }
   }
 }

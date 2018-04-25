@@ -24,6 +24,8 @@ export const AUTH = {
   LOG_OUT_ERROR: 'logOutError'
 }
 
+export const APPINIT = 'initApp'
+
 export const SCHEDULES = {
   GET_CHEDULES_SESSION: 'getChedulesSession',
   GET_CHEDULES_SESSION_SUCCESS: 'getChedulesSessionSuccess',

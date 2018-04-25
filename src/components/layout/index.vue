@@ -1,7 +1,7 @@
 <template>
   <el-header>
     <el-menu
-        background-color="#83358b"
+        background-color="rgb(41, 41, 65, 0.7)"
         active-text-color="#e82e81"
         text-color="#fff"
         :default-active="activeIndex"
@@ -25,8 +25,6 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      console.log('key', key)
-      console.log('path', keyPath)
     }
   },
   computed: {
@@ -42,10 +40,14 @@ export default {
 }
 </script>
 <style>
+/* .el-menu {
+  background-color: rgb(41, 41, 65, 0.5) !important
+} */
 .el-menu-item {
   font-weight: bold;
   font-size: 20px;
   color: white !important;
+  background-color: transparent !important
 }
 .el-menu-item a:hover {
   text-decoration-line: none

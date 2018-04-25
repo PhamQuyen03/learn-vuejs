@@ -36,7 +36,7 @@ export const get = ({ type, dispatch, url, params = {}, token }) => {
   const headers = {
     'Accept-Language': 'vi',
     Accept: `application/json; version=v2`,
-    Authorization: token ? `Bearer ${token}` : ''
+    Authorization: token ? `Bearer ${token}` : null
   }
   dispatchResult(type, httpClient.get(url, { params: humps.decamelizeKeys(params), headers }), dispatch)
 }

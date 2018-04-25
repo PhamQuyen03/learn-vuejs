@@ -6,9 +6,6 @@ import auth from './modules/auth/index'
 import errors from './modules/errors/index'
 import schedules from './modules/schedules'
 
-// import * as actions from './actions'
-// import * as types from './mutation-types'
-
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -30,6 +27,11 @@ const store = new Vuex.Store({
     errors,
     staticData,
     schedules
+  },
+  actions: {
+    initApp ({ commit, state }) {
+      return state
+    }
   },
   mutations: {
   }

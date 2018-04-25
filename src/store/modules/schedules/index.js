@@ -13,6 +13,7 @@ export default {
   mutations: {
     [GET_CHEDULES_SESSION] (state) {
       state.dataSessions = null
+      state.isLoading = true
     },
     [GET_CHEDULES_SESSION_SUCCESS] (state, payload) {
       const { data: { result, success } } = payload

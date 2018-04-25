@@ -12,12 +12,7 @@ import layout from './components/layout/index.vue'
 
 export default {
   name: 'App',
-  components: { layout },
-  data () {
-    return {
-      activeIndex: '1'
-    }
-  }
+  components: { layout }
 }
 </script>
 
