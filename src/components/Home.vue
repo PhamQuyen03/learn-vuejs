@@ -202,7 +202,7 @@ export default {
   }
 }
 </script>
-<style scope>
+<style>
 p{
     text-align: left;
     margin-top:50px;
@@ -211,37 +211,11 @@ p{
     font-size: medium;
     color: #83358b
 }
-.el-tag{
-    margin-right: 5px;
-    margin-top: 5px;
-    text-align: left;
-    background-color:  #292941;
-}
-.bg-purple-dark{
-  text-align: right;
-}
-.bg-purple-light {
-  text-align: left;
-}
-.bg-purple{
-  margin-top: 20px;
-  text-align: left
-}
-.grid-content {
-  margin-left: 30px
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
 .grid-content h3{
     color: black !important
 }
 .bg-tag{
     text-align: left
-}
-.grid-content span{
-    color: white
 }
 .el-input{
     font-weight: bold
@@ -249,18 +223,5 @@ p{
 .line{
     border-bottom: 2px solid #838282;
     margin-top: 20px;
-}
-.el-notification .el-icon-success {
-  color: white !important
-}
-.el-notification {
-  font-size: 12px;
-  background: rgb(124, 239, 130);
-}
-.el-notification__closeBtn {
-  color: white
-}
-.el-notification__content p {
-  color: white
 }
 </style>
