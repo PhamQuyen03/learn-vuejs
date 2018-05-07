@@ -5,6 +5,8 @@ import staticData from './modules/staticData/index'
 import auth from './modules/auth/index'
 import errors from './modules/errors/index'
 import schedules from './modules/schedules'
+import { AUTH } from './constantTypes'
+const { LOG_OUT_SUCCESS } = AUTH
 
 Vue.use(Vuex)
 
@@ -16,10 +18,16 @@ const store = new Vuex.Store({
   })],
   state: {
     router: null,
-    alert: {
-      type: 'error',
-      title: 'success alert',
-      isShow: false
+    auth: {
+      isLogIn: false,
+      authToken: '',
+      userData: {
+        name: '',
+        email: '',
+        avatar: null,
+        gender: null,
+        id: null
+      }
     }
   },
   modules: {
@@ -34,6 +42,13 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    [LOG_OUT_SUCCESS] (state, payload) {
+      state.auth = {
+        isLogIn: false,
+        authToken: '',
+        userData: {}
+      }
+    }
   }
 })
 

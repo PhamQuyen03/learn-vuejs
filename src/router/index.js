@@ -23,7 +23,7 @@ const router = new Router({
       component: Box
     },
     {
-      path: '/user/',
+      path: '/login/',
       name: 'user',
       component: User
     }

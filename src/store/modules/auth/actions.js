@@ -53,8 +53,8 @@ export const signUpDone = ({ commit }) => {
   commit(SIGN_UP_DONE, payload)
 }
 // log out
-export const logOut = ({ dispatch }, params) => {
-  auth.logOut({ type: LOG_OUT, dispatch, params })
+export const logOut = ({ dispatch }, header) => {
+  auth.logOut({ type: LOG_OUT, dispatch, header })
 }
 export const logOutSuccess = ({ commit }, payload) => {
   commit(LOG_OUT_SUCCESS, payload)

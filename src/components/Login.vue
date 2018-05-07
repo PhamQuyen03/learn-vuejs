@@ -24,7 +24,7 @@ export default {
   name: 'Login',
   data () {
     return {
-      dialogFormVisible: false,
+      dialogFormVisible: true,
       form: {
         email: '',
         password: ''
@@ -39,6 +39,23 @@ export default {
         password: this.form.password
       }
       this.$store.dispatch('logIn', data)
+    }
+  },
+  watch: {
+    isLogin: function (newValue, oldValue) {
+      if (newValue && !oldValue) {
+        this.$router.push({ path: '/' })
+      }
+    }
+  },
+  computed: {
+    isLogin: {
+      get: function () {
+        const { isLogIn } = this.$store.state.auth
+        return isLogIn
+      },
+      set: function (newValue) {
+      }
     }
   }
 }

@@ -58,6 +58,14 @@ export const put = ({ type, dispatch, url, params = {}, data, token }) => {
   }
   dispatchResult(type, httpClient.put(url, { params: paramsHumps }, { headers }, { data }), dispatch)
 }
+export const deleted = ({ type, dispatch, url, params = {}, token }) => {
+  const headers = {
+    'Accept-Language': 'vi',
+    Accept: `application/json; version=v2`,
+    Authorization: token ? `Bearer ${token}` : null
+  }
+  dispatchResult(type, httpClient.delete(url, { params: humps.decamelizeKeys(params), headers }), dispatch)
+}
 // export function logErrors(error) {
 //   if (error.response) {
 //     // The request was made and the server responded with a status code

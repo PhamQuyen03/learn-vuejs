@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="layout" v-bind:style="{ display: nameDisplay }">
   <div class="logo">
     <el-row>
       <el-col :span="12">
@@ -18,7 +18,7 @@
               <img v-bind:src="getImgUrl('user')" class="avatar">
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="a">Setting</el-dropdown-item>
-                <el-dropdown-item command="c" divided>Log Out</el-dropdown-item>
+                <el-dropdown-item command="LOG_OUT" divided>Log Out</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -45,11 +45,13 @@
 </template>
 
 <script>
+import { TYPE_TAGS } from '../constants/webContants.js'
+const { LOG_OUT } = TYPE_TAGS
 export default {
   name: 'layout',
   data () {
     return {
-      img_logp: ''
+      isDisplay: true
     }
   },
   methods: {
@@ -59,6 +61,21 @@ export default {
       return require(`../../assets/${namePic}.png`)
     },
     handleCommand (command) {
+      const { authToken: token } = this.$store.state.auth
+      const header = {
+        params: {},
+        token
+      }
+      if (command === LOG_OUT) {
+        this.$store.dispatch('logOut', header)
+      }
+    }
+  },
+  watch: {
+    isLogin: function (newValue, oldValue) {
+      if (!newValue && oldValue) {
+        this.$router.push({ path: '/login' })
+      }
     }
   },
   computed: {
@@ -66,6 +83,22 @@ export default {
       get: function () {
         const { currentRoute: { name } } = this.$store.state.router
         return name
+      },
+      set: function (newValue) {
+      }
+    },
+    nameDisplay: {
+      get: function () {
+        const { isLogIn } = this.$store.state.auth
+        return isLogIn ? 'block' : 'none'
+      },
+      set: function (newValue) {
+      }
+    },
+    isLogin: {
+      get: function () {
+        const { isLogIn } = this.$store.state.auth
+        return isLogIn
       },
       set: function (newValue) {
       }

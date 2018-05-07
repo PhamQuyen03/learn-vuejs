@@ -12,7 +12,8 @@ export const signUp = ({ type, dispatch, params }) => {
   const url = '/users/registration?email=quyenpt@wefit.vn&password=12345678'
   client.post({ type, dispatch, url, params })
 }
-export const logOut = ({ type, dispatch }) => {
-  const url = 'log_out'
-  client.post({ type, dispatch, url })
+export const logOut = ({ type, dispatch, header }) => {
+  const url = '/logout'
+  const { token } = header
+  client.deleted({ type, dispatch, url, token })
 }

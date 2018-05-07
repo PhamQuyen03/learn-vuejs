@@ -8,6 +8,7 @@ export default {
   actions,
   state: {
     isLoading: false,
+    success: false,
     dataSessions: null
   },
   mutations: {
@@ -19,6 +20,7 @@ export default {
       const { data: { result, success } } = payload
       state.dataSessions = result
       state.isLoading = success
+      state.success = success
     },
     [GET_CHEDULES_SESSION_DONE] (state, payload) {
       state.isLoading = false
@@ -26,9 +28,4 @@ export default {
     [GET_CHEDULES_SESSION_ERROR] (state, payload) {
     }
   }
-  // getters: {
-  //   getAmenities: state => () => {
-  //     this.$store.dispatch('getAmenities')
-  //   }
-  // }
 }
