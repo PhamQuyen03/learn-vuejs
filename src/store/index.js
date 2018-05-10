@@ -28,6 +28,15 @@ const store = new Vuex.Store({
         gender: null,
         id: null
       }
+    },
+    staticData: {
+      isLoading: false,
+      list: []
+    },
+    schedules: {
+      isLoading: false,
+      success: false,
+      dataSessions: null
     }
   },
   modules: {

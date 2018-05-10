@@ -8,8 +8,7 @@ export default {
   actions,
   state: {
     isLoading: false,
-    success: false,
-    dataSessions: null
+    success: false
   },
   mutations: {
     [GET_CHEDULES_SESSION] (state) {

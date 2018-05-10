@@ -8,26 +8,22 @@ export default {
   actions,
   state: {
     isLoading: false,
-    list: []
+    success: false
   },
   mutations: {
     [GET_AMENITIES] (state) {
-      this.state.isLoading = true
+      state.isLoading = true
     },
     [GET_AMENITIES_SUCCESS] (state, payload) {
-      const { data: { result } } = payload
-      this.state.staticData.isLoading = true
-      this.state.staticData.list = result
+      const { data: { result, success } } = payload
+      state.isLoading = true
+      state.list = result
+      state.success = success
     },
     [GET_AMENITIES_DONE] (state, payload) {
-      this.state.staticData.isLoading = false
+      state.isLoading = false
     },
     [GET_AMENITIES_ERROR] (state, payload) {
     }
   }
-  // getters: {
-  //   getAmenities: state => () => {
-  //     this.$store.dispatch('getAmenities')
-  //   }
-  // }
 }

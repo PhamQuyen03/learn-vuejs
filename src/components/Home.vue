@@ -192,9 +192,9 @@ export default {
   computed: {
     isLoading: {
       get: function () {
-        const { isLoading: loadingSchedule } = this.$store.state.schedules
-        const { isLoading: loadingStaticData } = this.$store.state.staticData
-        return (!loadingSchedule && !loadingStaticData) ? loadingSchedule : true
+        const { isLoading: loadingSchedule, success: successShedules } = this.$store.state.schedules
+        const { isLoading: loadingStaticData, success: successStaticData } = this.$store.state.staticData
+        return (!loadingSchedule && !loadingStaticData && successShedules && successStaticData) ? loadingSchedule : true
       },
       set: function (newValue) {
       }
